@@ -1,4 +1,3 @@
 *.zip
 samples/
-captcha-recognition-crnn-ctcloss-using-pytorch.ipynb
-
+.ipynb_checkpoints/
