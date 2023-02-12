@@ -8,5 +8,5 @@ All necessary scripts are in directory ```utils```:
   * ```utils/utils.py``` - file with useful utils;
   * ```utils/train.py``` - file with training script;  
 
-Experiments were coducted in ```ocr solution.ipynb```, so find results there. Final CER on test data was around 5.3%.  
+Experiments were coducted in ```ocr solution.ipynb```, so find results there. Final **CER** on test data was around **5.3%**.  
 
