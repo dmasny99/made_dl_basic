@@ -15,7 +15,8 @@ def train(model,
           train_loader, 
           test_loader, 
           inv_char_dict, 
-          device):
+          device,
+         ):
     
     min_test_cer = 1
     train_loss = []
@@ -80,6 +81,7 @@ def train(model,
             test_cer.append(batch_cer / len(test_loader))
             
             if test_cer[-1] < min_test_cer:
+                min_test_cer = test_cer[-1]
                 torch.save(model.state_dict(), "./ocr_model.pth")
         
         clear_output(wait=True)
@@ -103,5 +105,5 @@ def train(model,
         ax[1].grid(True)
         
         plt.show();
-        print(f"Training CER: {train_cer[-1]}   Test CER: {test_cer[-1]}")    
+        print(f"Training CER: {train_cer[-1]}   Test CER: {test_cer[-1]} Best CER on test: {min_test_cer}")    
         
