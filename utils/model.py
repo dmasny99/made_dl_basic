@@ -46,7 +46,7 @@ class OCRmodel(nn.Module):
               nn.Dropout2d(0.1),
         )
         self.map_to_sec = nn.Linear(cnn_out_dim, seq_dim)
-        self.rnn = self.rnn = nn.LSTM(input_size=seq_dim, 
+        self.rnn = nn.LSTM(input_size=seq_dim, 
                                       hidden_size=rnn_hidden_dim, 
                                       num_layers=3, 
                                       bidirectional=True)
@@ -59,8 +59,8 @@ class OCRmodel(nn.Module):
         out = out.permute(0, 2, 1)
         out = self.map_to_sec(out)
         out = out.permute(1, 0, 2)
-        out = self.rnn(out)
-        out = self.transcription(out[0])
+        out, _ = self.rnn(out)
+        out = self.transcription(out)
     
         input_lengths = torch.full(size=(out.size(1),), fill_value=out.size(0), dtype=torch.int32)
         target_lengths = torch.full(size=(out.size(1),), fill_value=CAPTCHA_LEN, dtype=torch.int32)
